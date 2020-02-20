@@ -1,5 +1,10 @@
 package com.employee.io.repository;
 
-public interface EmployeeRepository {
+import org.springframework.data.repository.CrudRepository;
+
+import com.employee.io.EmployeeEntity;
+
+public interface EmployeeRepository extends CrudRepository<EmployeeEntity, Long> {
+	EmployeeEntity findByEmpId(String id);
 
 }
