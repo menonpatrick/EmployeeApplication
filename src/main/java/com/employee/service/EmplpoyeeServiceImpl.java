@@ -12,16 +12,24 @@ import com.employee.io.repository.EmployeeRepository;
 public class EmplpoyeeServiceImpl implements EmployeeService {
 	
 	@Autowired
-	EmployeeRepository employeeRespository;
+	EmployeeRepository employeeRepository;
 
 	@Override
 	public EmployeeDao createOrUpdateEmployee(EmployeeDao employeeDao) {
 		EmployeeEntity employeeEntity = new EmployeeEntity();
 		EmployeeDao returnValue = new EmployeeDao();
 		BeanUtils.copyProperties(employeeDao, employeeEntity);
-		EmployeeEntity createdOrUpdatedEmployee = employeeRespository.save(employeeEntity);
+		EmployeeEntity createdOrUpdatedEmployee = employeeRepository.save(employeeEntity);
 		BeanUtils.copyProperties(createdOrUpdatedEmployee, returnValue);
 		return returnValue;
+	}
+
+	@Override
+	public EmployeeDao getEmployeeById(String id) {
+		EmployeeDao employeeDao = new EmployeeDao();
+		EmployeeEntity employeeEntity = employeeRepository.findByEmpId(id);
+		BeanUtils.copyProperties(employeeEntity, employeeDao);
+		return employeeDao;
 	}
 
 }

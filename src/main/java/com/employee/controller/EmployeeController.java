@@ -3,6 +3,7 @@ package com.employee.controller;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,14 @@ public class EmployeeController {
 	public String getMethodTesting() {
 		return "Get Method Test Passed!";
 	}
+
+	@GetMapping(value="/getEmployee/{id}")
+	public EmployeeResponse getEmployee(@PathVariable String id) {
+		EmployeeResponse employeeResponse = new EmployeeResponse();
+		EmployeeDao currentEmployee = employeeService.getEmployeeById(id);
+		BeanUtils.copyProperties(currentEmployee, employeeResponse);
+		return employeeResponse;
+	}
 	
 	@PostMapping(value="/createEmployee")
 	public EmployeeResponse createEmployee(@RequestBody EmployeeRequest employeeRequest) {
@@ -34,5 +43,6 @@ public class EmployeeController {
 		BeanUtils.copyProperties(createdEmployee, employeeResponse);
 		return employeeResponse;
 	}
+	
 	
 }
