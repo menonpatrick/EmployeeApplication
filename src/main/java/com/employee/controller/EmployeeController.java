@@ -1,5 +1,7 @@
 package com.employee.controller;
 
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.employee.dao.EmployeeDao;
+import com.employee.io.EmployeeEntity;
 import com.employee.model.EmployeeRequest;
 import com.employee.model.EmployeeResponse;
 import com.employee.service.EmployeeService;
@@ -32,6 +35,11 @@ public class EmployeeController {
 		EmployeeDao currentEmployee = employeeService.getEmployeeById(id);
 		BeanUtils.copyProperties(currentEmployee, employeeResponse);
 		return employeeResponse;
+	}
+	
+	@GetMapping(value="/getAllEmployees")
+	public List<EmployeeEntity> getAllEmployees() {
+		return employeeService.getAllEmployees();
 	}
 	
 	@PostMapping(value="/createEmployee")

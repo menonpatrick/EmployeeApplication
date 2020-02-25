@@ -1,5 +1,8 @@
 package com.employee.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +33,13 @@ public class EmplpoyeeServiceImpl implements EmployeeService {
 		EmployeeEntity employeeEntity = employeeRepository.findByEmpId(id);
 		BeanUtils.copyProperties(employeeEntity, employeeDao);
 		return employeeDao;
+	}
+
+	@Override
+	public List<EmployeeEntity> getAllEmployees() {
+		List<EmployeeEntity> allEmployees = new ArrayList<EmployeeEntity>();
+		employeeRepository.findAll().forEach(allEmployees::add);
+		return allEmployees;
 	}
 
 }
