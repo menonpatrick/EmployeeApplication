@@ -42,4 +42,12 @@ public class EmplpoyeeServiceImpl implements EmployeeService {
 		return allEmployees;
 	}
 
+	@Override
+	public void deleteEmployee(EmployeeDao employeeDao) {
+		EmployeeEntity employeeEntity = new EmployeeEntity();
+		BeanUtils.copyProperties(employeeDao, employeeEntity);
+		employeeRepository.delete(employeeEntity);
+		
+	}
+
 }

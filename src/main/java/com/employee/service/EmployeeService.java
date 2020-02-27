@@ -10,5 +10,6 @@ public interface EmployeeService {
 	EmployeeDao createOrUpdateEmployee(EmployeeDao employeeDao);
 	EmployeeDao getEmployeeById(String id);
 	List<EmployeeEntity> getAllEmployees();
-
+	void deleteEmployee(EmployeeDao employeeDao);
+	
 }

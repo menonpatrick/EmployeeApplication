@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -61,6 +62,13 @@ public class EmployeeController {
 		EmployeeDao updatedEmployee = employeeService.createOrUpdateEmployee(employeeDao);
 		BeanUtils.copyProperties(updatedEmployee, employeeResponse);
 		return employeeResponse;
+	}
+	
+	@DeleteMapping(value="/deleteEmployee/{id}")
+	public String deleteEmployee(@PathVariable String id) {
+		EmployeeDao employeeDao = employeeService.getEmployeeById(id);
+		employeeService.deleteEmployee(employeeDao);
+		return "Employee with ID:" + id + " has been deleted from our Database";
 	}
 	
 	
