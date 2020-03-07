@@ -1,18 +1,24 @@
 package com.employee.model;
 
+/**
+ * 
+ * @author Prateek
+ *
+ */
 public class EmployeeRequest {
 
 	private String empId;
 	private String firstName;
 	private String lastName;
 	private String department;
-
+	
 	public String getEmpId() {
 		return empId;
 	}
 	public void setEmpId(String empId) {
 		this.empId = empId;
 	}
+
 	public String getFirstName() {
 		return firstName;
 	}

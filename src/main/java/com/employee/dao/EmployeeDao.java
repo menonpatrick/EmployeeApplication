@@ -1,5 +1,10 @@
 package com.employee.dao;
 
+/**
+ * 
+ * @author Prateek
+ *
+ */
 public class EmployeeDao {
 
 	private String empId;

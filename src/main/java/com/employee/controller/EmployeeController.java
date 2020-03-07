@@ -49,7 +49,7 @@ public class EmployeeController {
 		EmployeeResponse employeeResponse = new EmployeeResponse();
 		EmployeeDao employeeDao = new EmployeeDao();
 		BeanUtils.copyProperties(employeeRequest, employeeDao);
-		EmployeeDao createdEmployee = employeeService.createOrUpdateEmployee(employeeDao);
+		EmployeeDao createdEmployee = employeeService.createEmployee(employeeDao);
 		BeanUtils.copyProperties(createdEmployee, employeeResponse);
 		return employeeResponse;
 	}
@@ -57,9 +57,9 @@ public class EmployeeController {
 	@PutMapping(value="/updateEmployee/{id}")
 	public EmployeeResponse updateEmployee(@RequestBody EmployeeRequest employeeRequest, @PathVariable String id) {
 		EmployeeResponse employeeResponse = new EmployeeResponse();
-		EmployeeDao employeeDao = employeeService.getEmployeeById(id);
+		EmployeeDao employeeDao = new EmployeeDao();
 		BeanUtils.copyProperties(employeeRequest, employeeDao);
-		EmployeeDao updatedEmployee = employeeService.createOrUpdateEmployee(employeeDao);
+		EmployeeDao updatedEmployee = employeeService.updateEmployee(id,employeeDao);
 		BeanUtils.copyProperties(updatedEmployee, employeeResponse);
 		return employeeResponse;
 	}
